@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: The Dogs API
+  version: 1.0.0
+servers:
+  - url: https://frozen-bayou-57322.herokuapp.com/api/
+paths:   
+  /dogs:
+    get:      
+      summary: Returns a list of dogs.
+      description: i don't know what is this :)
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response from DOG API  
+  /dogs/{dogId}:
+    get:
+      parameters:
+        - name: dogId
+          in: path
+          description: ID of dog to return
+          required: true          
+      summary: Return dog by id.
+      description: This is to get dog by ID
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response from DOG API
+          schema:
+            $ref: '#/definitions/Dog'  
+        400:
+          description: The specified dogs ID is invalid (e.g. not a number).
+        404:
+          description: A dog with the specified ID was not found.
+    put:
+      parameters:
+        - name: dogId
+          in: path
+          description: ID of dog to return
+      description: This is to Creates a new dog by ID
+      summary: Place dog by id.
+    delete:
+      parameters:
+        - name: dogId
+          in: path
+          description: ID of dog to return
+      description: This is to Delete dog by ID
+      summary: delete this dog by id.
+  definitions:
+    Dog:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        breed_group:
+          type: string
+        temperament:
+          type: string
+        origin:
+          type: string
+        country_code:
+          type: integer
+      required:  
+        - id
+        - name
+      
+             
