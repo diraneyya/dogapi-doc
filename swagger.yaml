@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: DOG API TESTING
+  description: dog testing demo Api by Peter
+  version: 0.1.0
+servers:
+  - url: http://dogtesting.com
+  - url: http://dogfood.com
+paths:
+  /Dogtest:
+    description: dog testing
+    get:
+      description: Return list of dogs
+      parameters:
+        - in: querry
+          name: dogname
+          required: true
+          schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref:'#/components/schemas/dogs'
+           
+  /dogs/id/breed:
+    description: Return dog by id
+    post:
+      responses:
+        '200':
+          description: Successful Response
+        parameters:
+        - in: querry
+          name: dogbreed
+          required: true
+          type: string
+          
