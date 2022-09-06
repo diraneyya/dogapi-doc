@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  termsOfService: http://swagger.io/terms/
+  version: 1.0.11
+servers: 
+  - url: http://localhost:3000/dogs
+    description: The Dogs API
+paths:
+  /dogs:
+    get:
+      summary: Return list of dogs
+      tags:
+        - Dogs
+      operationI: getAllDogs
+      responses:
+        '200':
+          description: List of dogs
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Dog"
+            
+            
+            
+components: 
+  schemas:
+    Dog:
+      type: object
+      required:
+         - name
+         - status
+      properties:
+        dog_id:
+          type: string
+        name:
+          type: string
+        breed_group:
+          type: string
+        temperament:
+          type: string
+        origin:
+          type: string
+        country_code:
+          type: string
