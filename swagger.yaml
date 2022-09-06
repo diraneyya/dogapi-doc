@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: OAS 3.0.3 sample with multiple servers
+  version: 0.1.0
+servers:
+  - url: https://frozen-bayou-57322.herokuapp.com/
+
+
+paths:
+  /dogs/:
+    get:
+      tags:
+        - Dogs
+      parametrs:
+        name: dogs
+         required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+
+
+      responses:
+        '200':
+          description: return result
