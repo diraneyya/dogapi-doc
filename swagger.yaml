@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  description: "This is the Dogs API, which allows to fetch data about the dogs, their name, their breed_group, their temperament, origin and a country code"
+  title: The Dogs API
+  version: 0.0.1
+servers:
+  - url: https://frozen-bayou-57322.herokuapp.com/api/
+tags:
+- name: "Dogs"
+  description: "Data about dogs"
+paths:
+  /dogs/:
+    get:
+      tags:
+      - "Dogs"
+      summary:
+        "Return list of dogs"
+      parameters:
+      - in: "path"
+        name: "limit"
+        description: "number of results to return"
+        required: false
+        default: 10
+      - in: "path"
+        name: "page"
+        description: "paginate through results"
+      responses:
+        '200':
+          description: Successful Response
+  /dogs/{id}:
+    get:
+      tags:
+      - "Dogs"
+      summary:
+        "Return dog by id"
+      responses:
+        '200':
+          description: Successful Response
+          schema:
+            $ref: "#/definitions/Filter"
+definitions:
+  Filter:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      breed_group:
+        type: "string"
+      temperament:
+        type: "string"
+      origin:
+        type: "string"
+      country_code:
+        type: "integer"
