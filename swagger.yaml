@@ -1,0 +1,13 @@
+openapi: 3.0.3
+info:
+  title: DOG API CREATED BY AKARDI..
+  version: 0.1.0
+
+servers:
+  - url: https://frozen-bayou-57322.herokuapp.com/api/
+paths:
+  /test/:
+    get:
+      responses: 
+        'USER ENDPOINTS :GET /dogs - Return list of dogs':
+          description: limit [optional]number of results to return (default value 10),Page [optional] paginate through results
