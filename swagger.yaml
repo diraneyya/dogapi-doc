@@ -1,0 +1,182 @@
+openapi: '3.0.2'
+info:
+  title: Cooking API
+  version: '1.0'
+servers:
+  - url: http://localhost:8000/
+paths:
+  /register:
+    post:
+      summary: Register the new user
+      description:  Register the new user
+      operationId: addUser
+      requestBody: 
+        description: Add the new user to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/users'
+        '405':
+          description: Invalid input
+
+    put:
+      summary: Change the users data
+      description: Change the user's data
+      operationId: changeUser
+      requestBody:
+        description: Change the uset in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/users'
+        '400':
+          description: Invalid email or password
+   
+    delete:
+      summary: Delete the user
+      description: Delete the user
+      operationId: deleteUser
+      requestBody:
+        description: delete the user from the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginUsers'
+      responses:
+        '200':
+          description: Successful operation
+        '400': 
+          description: Invalid email or password
+            
+        
+
+  /login:
+    post:
+      summary: Login the user
+      description: Login the user
+      operationId: loginUser
+      requestBody:
+        description: check the user in a database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginUsers'
+      responses:
+        '200':
+          description: Successful operation
+        '400': 
+          description: Invalid email or password
+  /dish:
+    put:
+      summary: Add the dish
+      description: Add the dish
+      operationId: addDish
+      requestBody:
+        description: add the new dish to the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addTheDish'
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid request
+    get:
+      summary: Get the dish from the list
+      description: Get the dish from the list
+      operationId: getDish
+      parameters: 
+        - name: dishId
+          in: path
+          description: The id of the dish which is being looked from
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/findTheDish'
+        '400':
+          description: Invalid dish ID
+
+
+
+    
+      
+    
+
+components:  
+  schemas:
+    users:
+      type: object
+      properties:
+        username: 
+          type: string
+          example: John
+        email:  
+          type: string
+          example: john@mail.com
+        password: 
+          type: string
+          example: password     
+    loginUsers:
+      type: object
+      properties:
+        email: 
+          type: string
+          example: john@mail.com
+        password: 
+          type: string
+          example: password
+    addTheDish:
+      type: object
+      properties:
+        userid:
+          type: integer
+          example: 1
+        dishId:
+          type: integer
+          example: 2398  
+        dishname:
+          type: string
+          example: Pizza
+        ingredients: 
+          type: string
+          example: cheese and tomatoes
+        img:  
+          type: string
+          example: https://image.com/image.jpg
+    findTheDish:
+      type: object
+      properties:
+        dishId:
+          type: integer
+          example: 2378
+        dishname: 
+          type: string
+          example: Pizza
+        ingredients:
+          type: string
+          example: Cheese and tomatoes
+        img:
+          type: string
+          example: https://image.com/image.jpg
